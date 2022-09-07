@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "public",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.js", "**/*.jsx"]
+}

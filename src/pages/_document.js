@@ -21,8 +21,13 @@ class FeedoramaDocument extends Document {
 
   render() {
     return (
-      <Html lang="pt-br">
-        <Head />
+      <Html>
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
