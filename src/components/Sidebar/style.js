@@ -3,26 +3,32 @@ import styled, { css } from "styled-components";
 export const Sidebar = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.pink};
-    width: 10%;
+    width: 15%;
     height: 100vh;
     box-shadow: 10px 0 20px 0 rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    position: fixed;
-    padding: 20px;
+    align-items: center;
+    z-index: 2;
+    position: sticky;
+    top: 0;
   `}
 `;
 
 export const Sidebar__container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
 `;
 
 export const LogoWrapper = styled.div`
-  width: 100%;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.pinkDark};
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid ${theme.colors.white};
+  `}
 `;
 
 export const Logo = styled.img`
@@ -59,9 +65,32 @@ export const MenuItem = styled.li`
   `}
 `;
 
-export const UserInfoWrapper = styled.div``;
-export const UserInfo__avatar = styled.div``;
+export const UserInfoWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 0;
+`;
+export const UserInfo__avatar = styled.img`
+  width: 100%;
+  max-width: 100px;
+  border-radius: 50px;
+  border: 3px solid white;
+`;
 
-export const UserInfo__name = styled.div``;
+export const UserInfo__name = styled.span`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+  `}
+`;
 
-export const UserInfo__email = styled.div``;
+export const UserInfo__email = styled.span`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    font-size: 1rem;
+  `}
+`;

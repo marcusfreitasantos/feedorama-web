@@ -4,9 +4,8 @@ export const Button = styled.button`
   ${({ theme }) => css`
     background-color: ${theme.colors.pink};
     border-radius: 50px;
-    padding: 10px;
+    padding: 8px 32px;
     margin-top: 5px;
-    width: 50%;
     color: ${theme.colors.white};
     text-align: center;
     font-size: 16px;
@@ -14,6 +13,9 @@ export const Button = styled.button`
     border: none;
     transition: 0.3s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     :hover {
       background-color: ${theme.colors.pinkDark};

@@ -5,9 +5,9 @@ import * as S from "./style";
 
 export default function DefaultTemplate(props) {
   return (
-    <S.Section>
+    <>
       <Sidebar />
       <MainContent {...props} />
-    </S.Section>
+    </>
   );
 }

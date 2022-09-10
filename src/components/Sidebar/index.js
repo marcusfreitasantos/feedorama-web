@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import Link from "next/link";
-import { LogOut, Users, Home, Lock, BookOpen } from "react-feather";
+import { LogOut, Users, Home, Lock, BookOpen, Box } from "react-feather";
 
 export default function Sidebar() {
   function logout() {
@@ -10,15 +10,14 @@ export default function Sidebar() {
 
   return (
     <S.Sidebar>
+      <S.LogoWrapper>
+        <S.Logo src="/img/feedorama-logo.svg" />
+      </S.LogoWrapper>
       <S.Sidebar__container>
-        <S.LogoWrapper>
-          <S.Logo src="/img/feedorama-logo.svg" />
-        </S.LogoWrapper>
-
         <S.UserInfoWrapper>
-          <S.UserInfo__avatar></S.UserInfo__avatar>
-          <S.UserInfo__name></S.UserInfo__name>
-          <S.UserInfo__email></S.UserInfo__email>
+          <S.UserInfo__avatar src="/img/avatar.jpg" />
+          <S.UserInfo__name>Peter Parker</S.UserInfo__name>
+          <S.UserInfo__email>pater@gmail.com</S.UserInfo__email>
         </S.UserInfoWrapper>
 
         <S.NavMenu>
@@ -33,6 +32,13 @@ export default function Sidebar() {
             <BookOpen width={24} color="#fff" />
             <Link href="/stories">
               <a>Stories</a>
+            </Link>
+          </S.MenuItem>
+
+          <S.MenuItem>
+            <Box width={24} color="#fff" />
+            <Link href="/segments">
+              <a>Segmentos</a>
             </Link>
           </S.MenuItem>
 

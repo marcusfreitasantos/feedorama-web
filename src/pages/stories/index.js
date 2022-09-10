@@ -10,11 +10,11 @@ export default function Stories(props) {
 
 export async function getServerSideProps() {
   const pageTitle = "Stories";
-  const stories = await getStories();
+  const content = await getStories();
 
   return {
     props: {
-      stories,
+      content,
       pageTitle,
     },
   };
