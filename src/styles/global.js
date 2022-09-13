@@ -27,3 +27,17 @@ export const PageTitle = styled.h1`
     margin: 0;
   `}
 `;
+
+export const MainContent__section = styled.div`
+  background: #eee;
+  width: 85%;
+  margin-left: auto;
+  padding: 40px;
+`;
+
+export const MainContent__container = styled.div`
+  padding: 40px;
+  background: white;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+`;

@@ -1,28 +1,5 @@
 import styled, { css } from "styled-components";
 
-export const MainContent__section = styled.div`
-  background: #eee;
-  width: 85%;
-  margin-left: auto;
-  padding: 40px;
-`;
-
-export const MainContent__container = styled.div`
-  padding: 40px;
-  background: white;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-`;
-
-export const MainContent__header = styled.div`
-  ${({ theme }) => css`
-    border-bottom: 2px solid ${theme.colors.pinkDark};
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    margin-bottom: 40px;
-  `}
-`;
 
 export const MainContent__filtersWrapper = styled.div`
   display: flex;

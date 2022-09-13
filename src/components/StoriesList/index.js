@@ -1,22 +1,22 @@
 import React from "react";
 import * as S from "./style";
-import { PageTitle } from "../../styles/global";
-import Button from "../Buttons";
-import { Trash, Edit, Plus } from "react-feather";
+
+import { Trash, Edit } from "react-feather";
 import theme from "../../styles/theme";
+import { MainContent__container, MainContent__section } from "../../styles/global";
+import { useRouter } from "next/router";
+import MainContentHeader from "../MainContentHeader";
 
-export default function MainContent(props) {
-  console.log(props.content);
+export default function StoriesList(props) {
+  const Router = useRouter()
+
+  function AddNew(){
+    Router.push('/stories/new')
+  }
   return (
-    <S.MainContent__section>
-      <S.MainContent__container>
-        <S.MainContent__header>
-          <PageTitle>{props.pageTitle}</PageTitle>
-          <Button>
-            <Plus width={24} /> Add Novo{" "}
-          </Button>
-        </S.MainContent__header>
-
+    <MainContent__section>
+      <MainContent__container>        
+        <MainContentHeader data={props.pageTitle} onClick={AddNew}/>
         <S.MainContent__filtersWrapper>
           <S.Label>
             Segmentos
@@ -60,7 +60,7 @@ export default function MainContent(props) {
               );
             })}
         </S.MainContent__ContentWrapper>
-      </S.MainContent__container>
-    </S.MainContent__section>
+      </MainContent__container>
+    </MainContent__section>
   );
 }
