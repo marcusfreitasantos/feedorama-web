@@ -3,7 +3,7 @@ import MainContentHeader from '../MainContentHeader'
 import { MainContent__container, MainContent__section } from "../../styles/global";
 
 
-export default function SegmentsList(props) {
+export default function CategoryList(props) {
   return (
     <MainContent__section>
       <MainContent__container>

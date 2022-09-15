@@ -2,12 +2,12 @@ import React from "react";
 
 import DefaultTemplate from "../templates/DefaultTemplate";
 
-export default function Profile(props) {
+export default function Categories(props) {
   return <DefaultTemplate {...props} />;
 }
 
 export async function getServerSideProps() {
-  const pageTitle = "Segmentos";
+  const pageTitle = "Categorias";
 
   return {
     props: {

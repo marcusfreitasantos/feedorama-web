@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  input, textarea, select, option{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+  }
+
   #__next{
     display: flex;
   }

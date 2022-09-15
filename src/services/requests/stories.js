@@ -9,3 +9,17 @@ export async function getStories() {
     return false;
   }
 }
+
+export async function postStories(title, category, content) {
+  try {
+    const res = await api.post(`/story`, {
+      title,
+      category,
+      content
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}

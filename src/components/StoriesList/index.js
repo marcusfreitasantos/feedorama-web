@@ -1,11 +1,13 @@
 import React from "react";
 import * as S from "./style";
 
-import { Trash, Edit } from "react-feather";
+import { Trash, Edit, Search } from "react-feather";
 import theme from "../../styles/theme";
 import { MainContent__container, MainContent__section } from "../../styles/global";
 import { useRouter } from "next/router";
 import MainContentHeader from "../MainContentHeader";
+import CategorySelect from "../CategorySelect";
+import TextField from "../TextField";
 
 export default function StoriesList(props) {
   const Router = useRouter()
@@ -13,29 +15,20 @@ export default function StoriesList(props) {
   function AddNew(){
     Router.push('/stories/new')
   }
+
   return (
     <MainContent__section>
       <MainContent__container>        
         <MainContentHeader data={props.pageTitle} onClick={AddNew}/>
         <S.MainContent__filtersWrapper>
           <S.Label>
-            Segmentos
-            <S.MainContent__segments defaultValue="default">
-              <option value="default" disabled>
-                Escolha um segmento
-              </option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-            </S.MainContent__segments>
+            Categorias
+            <CategorySelect/>
           </S.Label>
 
           <S.Label>
             Pesquisar Content
-            <S.MainContent__search
-              type="text"
-              placeholder="Pesquisar Content"
-            />
+            <TextField placeholder="Pesquisar Stories"><Search width={24} color={theme.colors.gray} /></TextField>
           </S.Label>
         </S.MainContent__filtersWrapper>
 

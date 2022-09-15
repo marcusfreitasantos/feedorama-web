@@ -37,8 +37,8 @@ export default function Sidebar() {
 
           <S.MenuItem>
             <Box width={24} color="#fff" />
-            <Link href="/segments">
-              <a>Segmentos</a>
+            <Link href="/categories">
+              <a>Categorias</a>
             </Link>
           </S.MenuItem>
 

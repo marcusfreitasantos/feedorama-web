@@ -8,7 +8,8 @@ export const InputArea = styled.div`
     flex-direction: row;
     align-items: center;
     border-radius: 5px;
-    margin: 5px 0;
+    margin: 10px 0;
+    height: 30px;
   `}
 `;
 

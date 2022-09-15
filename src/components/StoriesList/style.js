@@ -7,15 +7,6 @@ export const MainContent__filtersWrapper = styled.div`
   gap: 10px;
 `;
 
-export const MainContent__segments = styled.select`
-  ${({ theme }) => css`
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid ${theme.colors.gray};
-    margin-top: 10px;
-  `}
-`;
-
 export const MainContent__search = styled.input`
   ${({ theme }) => css`
     padding: 15px;

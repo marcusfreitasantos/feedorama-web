@@ -1,5 +1,5 @@
 export default {
-    segments: [
+    categories: [
       {
         id: 1,
         name: 'PetShop',
