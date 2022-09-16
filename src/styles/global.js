@@ -45,4 +45,5 @@ export const MainContent__container = styled.div`
   background: white;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+  position: relative;
 `;

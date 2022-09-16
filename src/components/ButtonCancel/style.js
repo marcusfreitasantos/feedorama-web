@@ -2,11 +2,11 @@ import styled, { css } from "styled-components";
 
 export const Button = styled.button`
   ${({ theme }) => css`
-    background-color: ${theme.colors.yellow};
+    background-color: ${theme.colors.grayLight};
     border-radius: 50px;
     padding: 8px 32px;
     margin-top: 5px;
-    color: ${theme.colors.white};
+    color: ${theme.colors.gray};
     text-align: center;
     font-size: 16px;
     text-transform: uppercase;
@@ -20,7 +20,7 @@ export const Button = styled.button`
     pointer-events: ${(props) => props.buttonActive === false ? 'none' : 'auto'} ;
 
     :hover {
-      background-color: ${theme.colors.yellowDark};
+      background-color: ${theme.colors.grayDark};
     }
   `}
 `;

@@ -7,6 +7,7 @@ export default function TextField({
   value,
   onChange,
   type,
+  onBlur,
 }) {
   return (
     <S.InputArea>
@@ -16,6 +17,7 @@ export default function TextField({
         value={value}
         onChange={onChange}
         type={type}
+        onBlur={onBlur}
       />
     </S.InputArea>
   );
