@@ -15,12 +15,12 @@ export default function CategoryList(props) {
 
 
         <S.MainContent__ContentWrapper>
-          {props.categoriesList?.categories &&
-            props.categoriesList.categories.map((content, index) => {
+          {props.categoriesList &&
+            props.categoriesList.map((item, index) => {
               return (
-                <S.Content__row key={content.id}>
+                <S.Content__row key={item.category}>
                   <S.Content__item>{index + 1}</S.Content__item>
-                  <S.Content__item>{content.name}</S.Content__item>
+                  <S.Content__item>{item.category}</S.Content__item>
                   <S.Content__buttonWrapper>
                     <S.Content__button>
                       <Trash width={24} color={theme.colors.pink} />

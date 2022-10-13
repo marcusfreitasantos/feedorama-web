@@ -1,7 +1,7 @@
 import React from "react";
 
 import DefaultTemplate from "../templates/DefaultTemplate";
-import categories from "../mocks/categories";
+import { getCategories } from "../services/requests/categories";
 
 export default function Categories(props) {
   return <DefaultTemplate {...props} />;
@@ -9,7 +9,10 @@ export default function Categories(props) {
 
 export async function getServerSideProps() {
   const pageTitle = "Categorias";
-  const categoriesList = categories
+  const categoriesList = await getCategories()
+
+  console.log(categoriesList)
+
 
   return {
     props: {

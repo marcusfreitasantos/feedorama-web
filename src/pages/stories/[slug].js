@@ -1,20 +1,20 @@
 import React from "react";
 
-import { getStories } from "../../services/requests/stories";
+import { getStoryById } from "../../services/requests/stories";
 
-import DefaultTemplate from "../../templates/DefaultTemplate";
+import StoryTemplate from "../../templates/StoryTemplate";
 
 export default function Stories(props) {
-  return <DefaultTemplate {...props} />;
+  return <StoryTemplate {...props} />;
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({params}) {
   const pageTitle = "Stories";
-  const stories = await getStories();
+  const story = await getStoryById(params.slug);
 
   return {
     props: {
-      stories,
+      story,
       pageTitle,
     },
   };
