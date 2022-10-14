@@ -1,8 +1,8 @@
 import React from 'react'
 import * as S from './style'
 
-export default function TextArea({onBlur, onChange, value}) {
+export default function TextArea({onBlur, onChange, value, placeholder}) {
   return (
-    <S.TextArea placeholder='Digite o conteúdo' rows={6} maxLength={600} value={value} onChange={onChange} onBlur={onBlur} />
+    <S.TextArea placeholder={placeholder} rows={6} maxLength={600} value={value} onChange={onChange} onBlur={onBlur} />
   )
 }

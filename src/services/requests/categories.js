@@ -10,9 +10,9 @@ export async function getCategories() {
   }
 }
 
-export async function getCategoryById(categoryId) {
+export async function getCategoryByName(categoryName) {
   try {
-    const res = await api.get(`/category/${categoryId}`);
+    const res = await api.get(`/category/${categoryName}`);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -20,9 +20,9 @@ export async function getCategoryById(categoryId) {
   }
 }
 
-export async function deleteCategories(categoryId) {
+export async function deleteCategories(categoryName) {
   try {
-    const res = await api.delete(`/category/${categoryId}`);
+    const res = await api.delete(`/category/${categoryName}`);
     return res;
   } catch (error) {
     console.log(error);
@@ -30,7 +30,7 @@ export async function deleteCategories(categoryId) {
   }
 }
 
-export async function postCategories(description, category) {
+export async function postCategories(category, description ) {
   try {
     const res = await api.post(`/category`, {
       description,

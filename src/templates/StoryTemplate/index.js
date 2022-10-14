@@ -58,7 +58,7 @@ export default function StoryTemplate (props) {
       <Sidebar/>
       <MainContent__section>
         <MainContent__container>
-          <MainContentHeader data="Atualizar Conteúdo" />
+          <MainContentHeader data={storyTitle} />
             <form>
               <TextField value={storyTitle} placeholder="Digite o Título do Story" onBlur={validateForm} onChange={(e) => setStoryTitle(e.currentTarget.value)}><Type width={24} color={theme.colors.gray} /></TextField>
               <CategorySelect defaultValue={storyCategory} onChange={(e) => setStoryCategory(e.currentTarget.value)}/>
