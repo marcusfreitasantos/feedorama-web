@@ -16,9 +16,9 @@ import { useRouter } from 'next/router';
 
 export default function StoryTemplate (props) {
   const router = useRouter()
-  const [storyTitle, setStoryTitle] = useState(props.story?.title)
+  const [storyTitle, setStoryTitle] = useState(props.story?.title || "")
   const [storyCategory, setStoryCategory] = useState(props.story?.category)
-  const [storyContent, setStoryContent] = useState(props.story?.content)
+  const [storyContent, setStoryContent] = useState(props.story?.content || "")
   const [active, isActive] = useState(false)
   const [sucessModal, setSucessModal] = useState(false)
   const [errorModal, setErrorModal] = useState(false)
@@ -57,8 +57,7 @@ export default function StoryTemplate (props) {
       createStory()
     }else{
       updateStory()
-    }
-    
+    }    
   }
 
   useEffect(() => {

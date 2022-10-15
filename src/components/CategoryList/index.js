@@ -47,36 +47,57 @@ export default function CategoryList(props) {
   return (
     <MainContent__section>
       <MainContent__container>
-        <MainContentHeader data={props.pageTitle} onClick={AddNew}/>
-
+        <MainContentHeader data={props.pageTitle} onClick={AddNew} />
 
         <S.MainContent__ContentWrapper>
+          <S.Content__row>
+            <S.Content__item className="row__header">ID</S.Content__item>
+            <S.Content__item className="row__header">Nome</S.Content__item>
+            <S.Content__item className="row__header">Ações</S.Content__item>
+          </S.Content__row>
           {categoriesList &&
             categoriesList.map((item, index) => {
               return (
                 <S.Content__row key={item.category}>
                   <S.Content__item>{index + 1}</S.Content__item>
                   <S.Content__item>{item.category}</S.Content__item>
-
-                  <S.Content__buttonWrapper>
-
-                    <S.Content__button onClick={() => editCategory(item.category)}>
+                  <S.Content__item>
+                    <S.Content__buttonWrapper>
+                      <S.Content__button
+                        onClick={() => editCategory(item.category)}
+                      >
                         <Edit width={24} color={theme.colors.yellow} />
-                    </S.Content__button>
+                      </S.Content__button>
 
-                    <S.Content__button onClick={() => deleteCategory(item.category)}>
-                      <Trash width={24} color={theme.colors.pink} />
-                    </S.Content__button>
-
-                  </S.Content__buttonWrapper>
+                      <S.Content__button
+                        onClick={() => deleteCategory(item.category)}
+                      >
+                        <Trash width={24} color={theme.colors.pink} />
+                      </S.Content__button>
+                    </S.Content__buttonWrapper>
+                  </S.Content__item>
                 </S.Content__row>
               );
             })}
         </S.MainContent__ContentWrapper>
 
-        {sucessModal && <Modal title="Categoria removida!" onClickConfirm={() => getCategoriesList()}><CheckCircle width={40} height={40} color={theme.colors.yellow}  /></Modal> }
-        {errorModal && <Modal title="Oops. Há algo errado." onClickCancel={() => getCategoriesList()}><AlertCircle width={40} height={40} color={theme.colors.pink} /></Modal> }
+        {sucessModal && (
+          <Modal
+            title="Categoria removida!"
+            onClickConfirm={() => getCategoriesList()}
+          >
+            <CheckCircle width={40} height={40} color={theme.colors.yellow} />
+          </Modal>
+        )}
+        {errorModal && (
+          <Modal
+            title="Oops. Há algo errado."
+            onClickCancel={() => getCategoriesList()}
+          >
+            <AlertCircle width={40} height={40} color={theme.colors.pink} />
+          </Modal>
+        )}
       </MainContent__container>
     </MainContent__section>
-  )
+  );
 }

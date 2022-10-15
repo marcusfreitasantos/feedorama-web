@@ -36,6 +36,10 @@ export const Content__row = styled.div`
     align-items: center;
     width: 100%;
     border-bottom: 1px solid ${theme.colors.gray};
+
+    .row__header {
+      font-weight: bold;
+    }
   `}
 `;
 
@@ -45,15 +49,16 @@ export const Content__item = styled.span`
     color: ${theme.colors.gray};
     padding: 10px;
     width: 100%;
+    text-align: center;
   `}
 `;
 
 export const Content__buttonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
-
+  
 export const Content__button = styled.button`
   background: none;
   border: none;

@@ -103,6 +103,12 @@ export default function StoriesList(props) {
         </S.MainContent__filtersWrapper>
 
         <S.MainContent__ContentWrapper>
+          <S.Content__row>
+            <S.Content__item className="row__header">ID</S.Content__item>
+            <S.Content__item className="row__header">Título</S.Content__item>
+            <S.Content__item className="row__header">Categoria</S.Content__item>
+            <S.Content__item className="row__header">Ações</S.Content__item>
+          </S.Content__row>
           {storiesList.length > 0 ? (
             storiesList.map((content, index) => {
               return (
@@ -110,15 +116,19 @@ export default function StoriesList(props) {
                   <S.Content__item>{index + 1}</S.Content__item>
                   <S.Content__item>{content.title}</S.Content__item>
                   <S.Content__item>{content.category}</S.Content__item>
-                  <S.Content__buttonWrapper>
-                    <S.Content__button onClick={() => editStory(content.id)}>
-                      <Edit width={24} color={theme.colors.yellow} />
-                    </S.Content__button>
+                  <S.Content__item>
+                    <S.Content__buttonWrapper>
+                      <S.Content__button onClick={() => editStory(content.id)}>
+                        <Edit width={24} color={theme.colors.yellow} />
+                      </S.Content__button>
 
-                    <S.Content__button onClick={() => deleteStory(content.id)}>
-                      <Trash width={24} color={theme.colors.pink} />
-                    </S.Content__button>
-                  </S.Content__buttonWrapper>
+                      <S.Content__button
+                        onClick={() => deleteStory(content.id)}
+                      >
+                        <Trash width={24} color={theme.colors.pink} />
+                      </S.Content__button>
+                    </S.Content__buttonWrapper>
+                  </S.Content__item>
                 </S.Content__row>
               );
             })

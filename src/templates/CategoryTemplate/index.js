@@ -13,17 +13,15 @@ import { useRouter } from 'next/router';
 
 
 export default function CategoryTemplate (props) {
-    console.log(props)
   const router = useRouter()
-  const [categoryName, setCategoryName] = useState(props.category.category)
-  const [description, setDescription] = useState(props.category.description)
+  const [categoryName, setCategoryName] = useState(props.category?.category || "")
+  const [description, setDescription] = useState(props.category?.description || "")
   const [active, isActive] = useState(false)
   const [sucessModal, setSucessModal] = useState(false)
   const [errorModal, setErrorModal] = useState(false)
 
 
   async function createCategory(e){
-    e.preventDefault()
     const newCategory = await postCategories(categoryName, description )
 
     if(newCategory.status === 200){
@@ -32,6 +30,10 @@ export default function CategoryTemplate (props) {
       {setErrorModal(true)}
     }
   }
+
+    async function updateCategory(e) {
+      console.log('update category')
+    }
 
   function validateForm(){
     if(categoryName?.length >= 3 && description?.length > 0 ){
@@ -45,6 +47,15 @@ export default function CategoryTemplate (props) {
     router.push('/categories')
   }
 
+ function handleClick(e) {
+   e.preventDefault();
+   if (router.asPath.includes("new")) {
+     createCategory();
+   } else {
+     updateCategory();
+   }
+ }
+
   useEffect(() => {
     validateForm()
   },[categoryName, description])
@@ -53,24 +64,50 @@ export default function CategoryTemplate (props) {
 
   return (
     <>
-      <Sidebar/>
+      <Sidebar />
       <MainContent__section>
         <MainContent__container>
-          <MainContentHeader data={categoryName} />
-            <form>
-              <TextField value={categoryName} placeholder="Digite o nome da Categoria" onBlur={validateForm} onChange={(e) => setCategoryName(e.currentTarget.value)}><Type width={24} color={theme.colors.gray} /></TextField>
+          <MainContentHeader data={categoryName || "Nova categoria"} />
+          <form>
+            <TextField
+              value={categoryName}
+              placeholder="Digite o nome da Categoria"
+              onBlur={validateForm}
+              onChange={(e) => setCategoryName(e.currentTarget.value)}
+            >
+              <Type width={24} color={theme.colors.gray} />
+            </TextField>
 
-              <TextArea onBlur={validateForm} placeholder="Digite uma descrição" value={description} onChange={(e) => setDescription(e.currentTarget.value)}/>
+            <TextArea
+              onBlur={validateForm}
+              placeholder="Digite uma descrição"
+              value={description}
+              onChange={(e) => setDescription(e.currentTarget.value)}
+            />
 
-              <Button onClick={createCategory} buttonActive={active}>Publicar</Button>
-            </form>
+            <Button onClick={(e) => handleClick(e)} buttonActive={active}>
+              Publicar
+            </Button>
+          </form>
 
-            {sucessModal && <Modal title="Categoria publicada!" onClickConfirm={backToCategories}><CheckCircle width={40} height={40} color={theme.colors.yellow}  /></Modal> }
-            {errorModal && <Modal title="Oops. Há algo errado." onClickCancel={() => setErrorModal(false)}><AlertCircle width={40} height={40} color={theme.colors.pink} /></Modal> }
-
-            
-          </MainContent__container>
+          {sucessModal && (
+            <Modal
+              title="Categoria publicada!"
+              onClickConfirm={backToCategories}
+            >
+              <CheckCircle width={40} height={40} color={theme.colors.yellow} />
+            </Modal>
+          )}
+          {errorModal && (
+            <Modal
+              title="Oops. Há algo errado."
+              onClickCancel={() => setErrorModal(false)}
+            >
+              <AlertCircle width={40} height={40} color={theme.colors.pink} />
+            </Modal>
+          )}
+        </MainContent__container>
       </MainContent__section>
     </>
-  )
+  );
 }

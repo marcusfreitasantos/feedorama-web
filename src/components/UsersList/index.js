@@ -13,8 +13,15 @@ export default function CategoryList(props) {
       <MainContent__container>
         <MainContentHeader data={props.pageTitle} />
 
-
         <S.MainContent__ContentWrapper>
+          <S.Content__row>
+            <S.Content__item className="row__header">ID</S.Content__item>
+            <S.Content__item className="row__header">Nome</S.Content__item>
+            <S.Content__item className="row__header">E-mail</S.Content__item>
+            <S.Content__item className="row__header">Categoria</S.Content__item>
+            <S.Content__item className="row__header">Status</S.Content__item>
+            <S.Content__item className="row__header">Ações</S.Content__item>
+          </S.Content__row>
           {props.usersList?.users &&
             props.usersList.users.map((content, index) => {
               return (
@@ -24,20 +31,21 @@ export default function CategoryList(props) {
                   <S.Content__item>{content.email}</S.Content__item>
                   <S.Content__item>{content.segment}</S.Content__item>
                   <S.Content__item>{content.currentState}</S.Content__item>
-
-                  <S.Content__buttonWrapper>
-                  <S.Content__button>
-                      <Edit width={24} color={theme.colors.yellow} />
-                    </S.Content__button>
-                    <S.Content__button>
-                      <Trash width={24} color={theme.colors.pink} />
-                    </S.Content__button>
-                  </S.Content__buttonWrapper>
+                  <S.Content__item>
+                    <S.Content__buttonWrapper>
+                      <S.Content__button>
+                        <Edit width={24} color={theme.colors.yellow} />
+                      </S.Content__button>
+                      <S.Content__button>
+                        <Trash width={24} color={theme.colors.pink} />
+                      </S.Content__button>
+                    </S.Content__buttonWrapper>
+                  </S.Content__item>
                 </S.Content__row>
               );
             })}
         </S.MainContent__ContentWrapper>
       </MainContent__container>
     </MainContent__section>
-  )
+  );
 }
