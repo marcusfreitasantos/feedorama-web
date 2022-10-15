@@ -16,16 +16,15 @@ import { useRouter } from 'next/router';
 
 export default function StoryTemplate (props) {
   const router = useRouter()
-  const [storyTitle, setStoryTitle] = useState(props.story.title)
-  const [storyCategory, setStoryCategory] = useState(props.story.category)
-  const [storyContent, setStoryContent] = useState(props.story.content)
+  const [storyTitle, setStoryTitle] = useState(props.story?.title)
+  const [storyCategory, setStoryCategory] = useState(props.story?.category)
+  const [storyContent, setStoryContent] = useState(props.story?.content)
   const [active, isActive] = useState(false)
   const [sucessModal, setSucessModal] = useState(false)
   const [errorModal, setErrorModal] = useState(false)
 
 
-  async function createStory(e){
-    e.preventDefault()
+  async function createStory(){
     const newStory = await postStories(storyTitle, storyCategory, storyContent )
 
     if(newStory.status === 200){
@@ -33,6 +32,11 @@ export default function StoryTemplate (props) {
     }else{
       {setErrorModal(true)}
     }
+  }
+
+  
+  async function updateStory() {
+    console.log("update story")
   }
 
   function validateForm(){
@@ -47,10 +51,19 @@ export default function StoryTemplate (props) {
     router.push('/stories')
   }
 
-  useEffect(() => {
-    validateForm()
-  },[storyTitle, storyCategory, storyContent])
+  function handleClick(e){
+    e.preventDefault()
+    if(router.asPath.includes('new')){
+      createStory()
+    }else{
+      updateStory()
+    }
+    
+  }
 
+  useEffect(() => {
+    validateForm()  
+  },[storyTitle, storyCategory, storyContent])
 
 
   return (
@@ -58,14 +71,15 @@ export default function StoryTemplate (props) {
       <Sidebar/>
       <MainContent__section>
         <MainContent__container>
-          <MainContentHeader data={storyTitle} />
+          <MainContentHeader data={storyTitle || 'Novo Story'} />
             <form>
               <TextField value={storyTitle} placeholder="Digite o Título do Story" onBlur={validateForm} onChange={(e) => setStoryTitle(e.currentTarget.value)}><Type width={24} color={theme.colors.gray} /></TextField>
+              
               <CategorySelect defaultValue={storyCategory} onChange={(e) => setStoryCategory(e.currentTarget.value)}/>
 
-              <TextArea onBlur={validateForm} value={storyContent} onChange={(e) => setStoryContent(e.currentTarget.value)}/>
+              <TextArea  placeholder="Adicione o conteúdo" onBlur={validateForm} value={storyContent} onChange={(e) => setStoryContent(e.currentTarget.value)}/>
 
-              <Button buttonActive={active}>Publicar</Button>
+              <Button buttonActive={active} onClick={handleClick}>Publicar</Button>
             </form>
 
             {sucessModal && <Modal title="Story publicado!" onClickConfirm={backToStories}><CheckCircle width={40} height={40} color={theme.colors.yellow}  /></Modal> }

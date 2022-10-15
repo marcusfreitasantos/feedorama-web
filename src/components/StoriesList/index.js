@@ -13,6 +13,7 @@ import Modal from '../../components/Modal';
 
 
 export default function StoriesList(props) {
+  const [currentCategory, setCurrentCategory] = useState()
   const [sucessModal, setSucessModal] = useState(false)
   const [errorModal, setErrorModal] = useState(false)
   const Router = useRouter()
@@ -43,19 +44,29 @@ export default function StoriesList(props) {
     Router.push(`/stories/${storyId}`)
   }
 
+  React.useEffect(() => {
+    console.log(currentCategory);
+  }, [currentCategory]);
+ 
+
   return (
     <MainContent__section>
-      <MainContent__container>        
-        <MainContentHeader data={props.pageTitle} onClick={AddNew}/>
+      <MainContent__container>
+        <MainContentHeader data={props.pageTitle} onClick={AddNew} />
         <S.MainContent__filtersWrapper>
           <S.Label>
             Categorias
-            <CategorySelect/>
+            <CategorySelect
+              defaultValue={currentCategory}
+              onChange={(e) => setCurrentCategory(e.currentTarget.value)}
+            />
           </S.Label>
 
           <S.Label>
             Pesquisar Content
-            <TextField placeholder="Pesquisar Stories"><Search width={24} color={theme.colors.gray} /></TextField>
+            <TextField placeholder="Pesquisar Stories">
+              <Search width={24} color={theme.colors.gray} />
+            </TextField>
           </S.Label>
         </S.MainContent__filtersWrapper>
 
@@ -81,8 +92,22 @@ export default function StoriesList(props) {
             })}
         </S.MainContent__ContentWrapper>
 
-        {sucessModal && <Modal title="Story removido!" onClickConfirm={() => getStoriesList()}><CheckCircle width={40} height={40} color={theme.colors.yellow}  /></Modal> }
-        {errorModal && <Modal title="Oops. Há algo errado." onClickCancel={() => getStoriesList()}><AlertCircle width={40} height={40} color={theme.colors.pink} /></Modal> }
+        {sucessModal && (
+          <Modal
+            title="Story removido!"
+            onClickConfirm={() => getStoriesList()}
+          >
+            <CheckCircle width={40} height={40} color={theme.colors.yellow} />
+          </Modal>
+        )}
+        {errorModal && (
+          <Modal
+            title="Oops. Há algo errado."
+            onClickCancel={() => getStoriesList()}
+          >
+            <AlertCircle width={40} height={40} color={theme.colors.pink} />
+          </Modal>
+        )}
       </MainContent__container>
     </MainContent__section>
   );
