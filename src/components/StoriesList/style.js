@@ -65,3 +65,11 @@ export const Content__button = styled.button`
     opacity: 0.5;
   }
 `;
+
+export const NotFound = styled.p`
+${({theme}) => css `
+  color: ${theme.colors.gray};
+  font-size: 1.2rem;
+  text-align: center;
+`}
+`

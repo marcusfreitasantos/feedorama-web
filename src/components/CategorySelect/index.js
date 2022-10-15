@@ -5,7 +5,7 @@ import * as S from "./style";
 import { Box } from "react-feather";
 import theme from "../../styles/theme";
 
-export default function CategorySelect({ onChange, defaultValue }) {
+export default function CategorySelect({ onChange, defaultValue, all }) {
   const [categoriesList, setCategoriesList] = useState();
 
   async function getCategoriesList() {
@@ -26,7 +26,12 @@ export default function CategorySelect({ onChange, defaultValue }) {
         value={defaultValue ? defaultValue : "default"}
         onChange={onChange}
       >
-        <option value="default" disabled>Escolha uma categoria</option>
+        <option value="default" disabled>
+          Escolha uma categoria
+        </option>
+
+        {all && <option value={all}>Todas</option>}
+        
         {categoriesList &&
           categoriesList.map((item, index) => {
             return (

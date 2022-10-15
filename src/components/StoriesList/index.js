@@ -1,53 +1,81 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 
 import { Trash, Edit, Search, CheckCircle, AlertCircle } from "react-feather";
 import theme from "../../styles/theme";
-import { MainContent__container, MainContent__section } from "../../styles/global";
+import {
+  MainContent__container,
+  MainContent__section,
+} from "../../styles/global";
 import { useRouter } from "next/router";
 import MainContentHeader from "../MainContentHeader";
 import CategorySelect from "../CategorySelect";
 import TextField from "../TextField";
 import { getStories, deleteStories } from "../../services/requests/stories";
-import Modal from '../../components/Modal';
-
+import Modal from "../../components/Modal";
 
 export default function StoriesList(props) {
-  const [currentCategory, setCurrentCategory] = useState()
-  const [sucessModal, setSucessModal] = useState(false)
-  const [errorModal, setErrorModal] = useState(false)
-  const Router = useRouter()
-  const [storiesList, setStoriesList] = useState(props.content)
+  const Router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentCategory, setCurrentCategory] = useState();
+  const [sucessModal, setSucessModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
+  const [storiesList, setStoriesList] = useState(props.content);
 
-  function AddNew(){
-    Router.push('/stories/new')
+  function AddNew() {
+    Router.push("/stories/new");
   }
 
-  async function deleteStory(storyId){
-    const response = await deleteStories(storyId)
-    
-    if(response.status === 200){
-      {setSucessModal(true)}
-    }else{
-      {setErrorModal(true)}
+  async function deleteStory(storyId) {
+    const response = await deleteStories(storyId);
+
+    if (response.status === 200) {
+      {
+        setSucessModal(true);
+      }
+    } else {
+      {
+        setErrorModal(true);
+      }
     }
   }
 
-  async function getStoriesList(){
-    const content = await getStories()
-    setStoriesList(content)
-    setSucessModal(false)
-    setErrorModal(false)
+  async function getStoriesList() {
+    const content = await getStories();
+    setStoriesList(content);
+    setSucessModal(false);
+    setErrorModal(false);
   }
 
-  function editStory(storyId){
-    Router.push(`/stories/${storyId}`)
+  function editStory(storyId) {
+    Router.push(`/stories/${storyId}`);
   }
 
-  React.useEffect(() => {
-    console.log(currentCategory);
+  async function searchStoriesByCategory() {
+    if (currentCategory !== "Todas") {
+      const newStoriesList = props.content.filter(
+        (item) => item.category === currentCategory
+      );
+
+      setStoriesList(newStoriesList);
+    } else {
+      setStoriesList(props.content);
+    }
+  }
+
+  async function searchStoriesByName(e) {
+    const newStoriesList = props.content.filter((item) =>
+      item.title.toLowerCase().includes(e.currentTarget.value.toLowerCase())
+    );
+
+    setStoriesList(newStoriesList);
+  }
+
+  useEffect(() => {
+    if (currentCategory !== undefined) {
+      searchStoriesByCategory();
+    }
   }, [currentCategory]);
- 
 
   return (
     <MainContent__section>
@@ -57,21 +85,25 @@ export default function StoriesList(props) {
           <S.Label>
             Categorias
             <CategorySelect
+              all="Todas"
               defaultValue={currentCategory}
               onChange={(e) => setCurrentCategory(e.currentTarget.value)}
             />
           </S.Label>
 
           <S.Label>
-            Pesquisar Content
-            <TextField placeholder="Pesquisar Stories">
+            Pesquisar Stories
+            <TextField
+              placeholder="Pesquisar Stories"
+              onChange={(e) => searchStoriesByName(e)}
+            >
               <Search width={24} color={theme.colors.gray} />
             </TextField>
           </S.Label>
         </S.MainContent__filtersWrapper>
 
         <S.MainContent__ContentWrapper>
-          {storiesList &&
+          {storiesList.length > 0 ? (
             storiesList.map((content, index) => {
               return (
                 <S.Content__row key={content.id}>
@@ -89,7 +121,10 @@ export default function StoriesList(props) {
                   </S.Content__buttonWrapper>
                 </S.Content__row>
               );
-            })}
+            })
+          ) : (
+            <S.NotFound>Nada encontrado</S.NotFound>
+          )}
         </S.MainContent__ContentWrapper>
 
         {sucessModal && (
