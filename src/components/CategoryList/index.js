@@ -64,13 +64,13 @@ export default function CategoryList(props) {
                   <S.Content__item>
                     <S.Content__buttonWrapper>
                       <S.Content__button
-                        onClick={() => editCategory(item.category)}
+                        onClick={() => editCategory(item.slug)}
                       >
                         <Edit width={24} color={theme.colors.yellow} />
                       </S.Content__button>
 
                       <S.Content__button
-                        onClick={() => deleteCategory(item.category)}
+                        onClick={() => deleteCategory(item.slug)}
                       >
                         <Trash width={24} color={theme.colors.pink} />
                       </S.Content__button>

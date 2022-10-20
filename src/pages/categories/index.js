@@ -11,9 +11,6 @@ export async function getServerSideProps() {
   const pageTitle = "Categorias";
   const categoriesList = await getCategories()
 
-  console.log(categoriesList)
-
-
   return {
     props: {
       pageTitle,

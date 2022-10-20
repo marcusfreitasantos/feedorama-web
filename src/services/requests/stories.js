@@ -43,3 +43,17 @@ export async function postStories(title, category, content) {
     return false;
   }
 }
+
+export async function updateStories(storyId, title, content) {
+  try {
+    const res = await api.put(`/story/${storyId}`, {
+      title,
+      content,
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
