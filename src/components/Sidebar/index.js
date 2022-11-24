@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as S from "./style";
 import Link from "next/link";
 import { LogOut, Users, BookOpen, Box } from "react-feather";
@@ -15,6 +15,14 @@ export default function Sidebar() {
     destroyCookie(null, "userToken");
     Router.push("/");
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (localStorage.getItem("userInfo")) {
+        setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+      }
+    }
+  }, []);
 
   return (
     <S.Sidebar>

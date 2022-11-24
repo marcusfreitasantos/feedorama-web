@@ -21,6 +21,8 @@ export default function LoginForm() {
     const userObj = jwtDecode(response.credential);
     setUserInfo(userObj);
 
+    localStorage.setItem("userInfo", JSON.stringify(userObj));
+
     const login = await loginUser(userObj.email);
 
     if (login) {
