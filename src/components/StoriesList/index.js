@@ -110,7 +110,7 @@ export default function StoriesList(props) {
             <S.Content__item className="row__header">Categoria</S.Content__item>
             <S.Content__item className="row__header">Ações</S.Content__item>
           </S.Content__row>
-          {storiesList.length > 0 ? (
+          {storiesList && storiesList.length > 0 ? (
             storiesList.map((content, index) => {
               return (
                 <S.Content__row key={content.id}>
