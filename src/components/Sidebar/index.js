@@ -13,6 +13,7 @@ export default function Sidebar() {
   function logout() {
     setUserInfo([]);
     destroyCookie(null, "userToken");
+    localStorage.removeItem("userInfo");
     Router.push("/");
   }
 

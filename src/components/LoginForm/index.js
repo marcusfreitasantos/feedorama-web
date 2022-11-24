@@ -21,12 +21,11 @@ export default function LoginForm() {
     const userObj = jwtDecode(response.credential);
     setUserInfo(userObj);
 
-    localStorage.setItem("userInfo", JSON.stringify(userObj));
-
     const login = await loginUser(userObj.email);
 
     if (login) {
       const token = await login.data.AccessToken;
+      localStorage.setItem("userInfo", JSON.stringify(userObj));
       router.push("/stories");
       setCookie(null, "userToken", token, {
         maxAge: 30 * 24 * 60 * 60,
