@@ -15,8 +15,10 @@ import { Type, CheckCircle, AlertCircle } from "react-feather";
 import theme from "../../styles/theme";
 import Modal from "../../components/Modal";
 import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
 
 export default function StoryTemplate(props) {
+  const token = parseCookies().userToken;
   const router = useRouter();
   const [storyTitle, setStoryTitle] = useState(props.story?.title || "");
   const [storyCategory, setStoryCategory] = useState(props.story?.category);
@@ -26,7 +28,12 @@ export default function StoryTemplate(props) {
   const [errorModal, setErrorModal] = useState(false);
 
   async function createStory() {
-    const newStory = await postStories(storyTitle, storyCategory, storyContent);
+    const newStory = await postStories(
+      storyTitle,
+      storyCategory,
+      storyContent,
+      token
+    );
 
     if (newStory.status === 200) {
       {
@@ -43,7 +50,8 @@ export default function StoryTemplate(props) {
     const newStory = await updateStories(
       props.story.id,
       storyTitle,
-      storyContent
+      storyContent,
+      token
     );
 
     if (newStory.status === 200) {

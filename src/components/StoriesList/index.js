@@ -21,13 +21,14 @@ export default function StoriesList(props) {
   const [sucessModal, setSucessModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
   const [storiesList, setStoriesList] = useState(props.content);
+  const token = props.cookies.userToken;
 
   function AddNew() {
     Router.push("/stories/new");
   }
 
   async function deleteStory(storyId) {
-    const response = await deleteStories(storyId);
+    const response = await deleteStories(storyId, token);
 
     if (response.status === 200) {
       {
@@ -41,7 +42,7 @@ export default function StoriesList(props) {
   }
 
   async function getStoriesList() {
-    const content = await getStories();
+    const content = await getStories(token);
     setStoriesList(content);
     setSucessModal(false);
     setErrorModal(false);

@@ -49,6 +49,7 @@ export const MenuItem = styled.li`
     display: flex;
     align-items: center;
     transition: 0.3s;
+    cursor: pointer;
 
     :hover {
       opacity: 0.5;
@@ -91,6 +92,6 @@ export const UserInfo__name = styled.span`
 export const UserInfo__email = styled.span`
   ${({ theme }) => css`
     color: ${theme.colors.white};
-    font-size: 1rem;
+    font-size: 0.8rem;
   `}
 `;

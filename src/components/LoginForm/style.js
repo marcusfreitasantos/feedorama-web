@@ -48,3 +48,10 @@ export const Form__title = styled.h2`
 `;
 
 export const Logo = styled.img``;
+
+export const GoogleButton = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

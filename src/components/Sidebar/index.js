@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as S from "./style";
 import Link from "next/link";
-import { LogOut, Users, Home, Lock, BookOpen, Box } from "react-feather";
+import { LogOut, Users, BookOpen, Box } from "react-feather";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import { useRouter } from "next/router";
+import { destroyCookie } from "nookies";
 
 export default function Sidebar() {
+  const Router = useRouter();
+  const { userInfo, setUserInfo } = useContext(GlobalContext);
+
   function logout() {
-    alert("Logout");
+    setUserInfo([]);
+    destroyCookie(null, "userToken");
+    Router.push("/");
   }
 
   return (
@@ -15,19 +23,14 @@ export default function Sidebar() {
       </S.LogoWrapper>
       <S.Sidebar__container>
         <S.UserInfoWrapper>
-          <S.UserInfo__avatar src="/img/avatar.jpg" />
-          <S.UserInfo__name>Peter Parker</S.UserInfo__name>
-          <S.UserInfo__email>pater@gmail.com</S.UserInfo__email>
+          <S.UserInfo__avatar src={userInfo?.picture} />
+          <S.UserInfo__name>
+            {userInfo?.given_name} {userInfo?.family_name}
+          </S.UserInfo__name>
+          <S.UserInfo__email>{userInfo?.email}</S.UserInfo__email>
         </S.UserInfoWrapper>
 
         <S.NavMenu>
-          <S.MenuItem>
-            <Home width={24} color="#fff" />
-            <Link href="/dashboard">
-              <a>Início</a>
-            </Link>
-          </S.MenuItem>
-
           <S.MenuItem>
             <BookOpen width={24} color="#fff" />
             <Link href="/stories">
@@ -48,19 +51,9 @@ export default function Sidebar() {
               <a>Usuários</a>
             </Link>
           </S.MenuItem>
-
-          <S.MenuItem>
-            <Lock width={24} color="#fff" />
-            <Link href="/profile">
-              <a>Perfil</a>
-            </Link>
-          </S.MenuItem>
-
           <S.MenuItem>
             <LogOut width={24} color="#fff" />
-            <Link href="/">
-              <a>Sair</a>
-            </Link>
+            <a onClick={logout}>Sair</a>
           </S.MenuItem>
         </S.NavMenu>
       </S.Sidebar__container>

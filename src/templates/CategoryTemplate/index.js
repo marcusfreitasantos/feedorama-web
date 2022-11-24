@@ -1,66 +1,93 @@
-import React, {useState, useEffect} from 'react'
-import MainContentHeader from '../../components/MainContentHeader'
-import { MainContent__container, MainContent__section } from "../../styles/global";
-import { postCategories } from '../../services/requests/categories';
-import TextField from '../../components/TextField';
-import Sidebar from '../../components/Sidebar'
-import Button from '../../components/Buttons';
-import TextArea from '../../components/TextArea';
+import React, { useState, useEffect } from "react";
+import MainContentHeader from "../../components/MainContentHeader";
+import {
+  MainContent__container,
+  MainContent__section,
+} from "../../styles/global";
+import {
+  postCategories,
+  putCategories,
+} from "../../services/requests/categories";
+import TextField from "../../components/TextField";
+import Sidebar from "../../components/Sidebar";
+import Button from "../../components/Buttons";
+import TextArea from "../../components/TextArea";
 import { Type, CheckCircle, AlertCircle } from "react-feather";
 import theme from "../../styles/theme";
-import Modal from '../../components/Modal';
-import { useRouter } from 'next/router';
+import Modal from "../../components/Modal";
+import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
 
+export default function CategoryTemplate(props) {
+  const token = parseCookies().userToken;
+  const router = useRouter();
+  const [categoryName, setCategoryName] = useState(
+    props.category?.category || ""
+  );
+  const [description, setDescription] = useState(
+    props.category?.description || ""
+  );
+  const [active, isActive] = useState(false);
+  const [sucessModal, setSucessModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
 
-export default function CategoryTemplate (props) {
-  const router = useRouter()
-  const [categoryName, setCategoryName] = useState(props.category?.category || "")
-  const [description, setDescription] = useState(props.category?.description || "")
-  const [active, isActive] = useState(false)
-  const [sucessModal, setSucessModal] = useState(false)
-  const [errorModal, setErrorModal] = useState(false)
+  async function createCategory(e) {
+    const newCategory = await postCategories(categoryName, description, token);
 
-
-  async function createCategory(e){
-    const newCategory = await postCategories(categoryName, description )
-
-    if(newCategory.status === 200){
-      {setSucessModal(true)}
-    }else{
-      {setErrorModal(true)}
+    if (newCategory.status === 200) {
+      {
+        setSucessModal(true);
+      }
+    } else {
+      {
+        setErrorModal(true);
+      }
     }
   }
 
-    async function updateCategory(e) {
-      console.log('update category')
-    }
+  async function updateCategory(e) {
+    const newCategory = await putCategories(
+      props.category.slug,
+      categoryName,
+      description,
+      token
+    );
 
-  function validateForm(){
-    if(categoryName?.length >= 3 && description?.length > 0 ){
-      isActive(true)
-    }else{
-      isActive(false)
+    if (newCategory.status === 200) {
+      {
+        setSucessModal(true);
+      }
+    } else {
+      {
+        setErrorModal(true);
+      }
     }
   }
 
-  function backToCategories(){
-    router.push('/categories')
+  function validateForm() {
+    if (categoryName?.length >= 3 && description?.length > 0) {
+      isActive(true);
+    } else {
+      isActive(false);
+    }
   }
 
- function handleClick(e) {
-   e.preventDefault();
-   if (router.asPath.includes("new")) {
-     createCategory();
-   } else {
-     updateCategory();
-   }
- }
+  function backToCategories() {
+    router.push("/categories");
+  }
+
+  function handleClick(e) {
+    e.preventDefault();
+    if (router.asPath.includes("new")) {
+      createCategory();
+    } else {
+      updateCategory();
+    }
+  }
 
   useEffect(() => {
-    validateForm()
-  },[categoryName, description])
-
-
+    validateForm();
+  }, [categoryName, description]);
 
   return (
     <>

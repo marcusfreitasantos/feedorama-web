@@ -1,47 +1,56 @@
-import React, {useState, useEffect} from 'react'
-import MainContentHeader from '../MainContentHeader'
-import { MainContent__container, MainContent__section } from "../../styles/global";
+import React, { useState, useEffect } from "react";
+import MainContentHeader from "../MainContentHeader";
+import {
+  MainContent__container,
+  MainContent__section,
+} from "../../styles/global";
 import { Trash, Edit, CheckCircle, AlertCircle } from "react-feather";
 import theme from "../../styles/theme";
-import { useRouter } from 'next/router';
-import { deleteCategories, getCategories } from '../../services/requests/categories';
-import Modal from '../../components/Modal';
+import { useRouter } from "next/router";
+import {
+  deleteCategories,
+  getCategories,
+} from "../../services/requests/categories";
+import Modal from "../../components/Modal";
+import { parseCookies } from "nookies";
 
-
-import * as S from './style'
-
+import * as S from "./style";
 
 export default function CategoryList(props) {
-  const [sucessModal, setSucessModal] = useState(false)
-  const [errorModal, setErrorModal] = useState(false)
-  const [categoriesList, setCategoriesList] = useState(props.categoriesList)
+  const token = parseCookies().userToken;
+  const [sucessModal, setSucessModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
+  const [categoriesList, setCategoriesList] = useState(props.categoriesList);
 
-  const Router = useRouter()
+  const Router = useRouter();
 
-  function AddNew(){
-    Router.push(`/categories/new`)
+  function AddNew() {
+    Router.push(`/categories/new`);
   }
 
-  function editCategory(categoryName){
-    Router.push(`/categories/${categoryName}`)
+  function editCategory(categoryName) {
+    Router.push(`/categories/${categoryName}`);
   }
 
-  async function deleteCategory(categoryName){
-    const response = await deleteCategories(categoryName)
+  async function deleteCategory(categoryName) {
+    const response = await deleteCategories(categoryName, token);
 
-    if(response.status === 200){
-      {setSucessModal(true)}
-    }else{
-      {setErrorModal(true)}
+    if (response.status === 200) {
+      {
+        setSucessModal(true);
+      }
+    } else {
+      {
+        setErrorModal(true);
+      }
     }
   }
 
-
-  async function getCategoriesList(){
-    const content = await getCategories()
-    setCategoriesList(content)
-    setSucessModal(false)
-    setErrorModal(false)
+  async function getCategoriesList() {
+    const content = await getCategories(token);
+    setCategoriesList(content);
+    setSucessModal(false);
+    setErrorModal(false);
   }
 
   return (
