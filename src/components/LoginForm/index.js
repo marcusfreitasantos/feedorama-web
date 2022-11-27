@@ -42,16 +42,18 @@ export default function LoginForm() {
       router.push("/stories");
     }
 
-    google.accounts.id.initialize({
-      client_id:
-        "555045706500-6fhdusi4dbmbiphr5gql3inkb4efioto.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
+    if (google) {
+      google.accounts.id.initialize({
+        client_id:
+          "555045706500-6fhdusi4dbmbiphr5gql3inkb4efioto.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+      });
 
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
+      google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+        theme: "outline",
+        size: "large",
+      });
+    }
   }, [loading]);
 
   return (
