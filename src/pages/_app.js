@@ -8,12 +8,7 @@ import Script from "next/script";
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Script
-        src="https://accounts.google.com/gsi/client"
-        async
-        defer
-        strategy="beforeInteractive"
-      />
+      <script src="https://accounts.google.com/gsi/client"></script>
       <InfoProvider>
         <ThemeProvider theme={theme}>
           <Head>
