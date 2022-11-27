@@ -1,8 +1,12 @@
 import api from "../api";
 
-export async function getUsers() {
+export async function getUsers(token) {
   try {
-    const res = await api.get(`/user`);
+    const res = await api.get(`/users/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -10,9 +14,13 @@ export async function getUsers() {
   }
 }
 
-export async function getUserByEmail(userEmail) {
+export async function getUserByEmail(token, userEmail) {
   try {
-    const res = await api.get(`/user/${userEmail}`);
+    const res = await api.get(`/user/${userEmail}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -20,9 +28,13 @@ export async function getUserByEmail(userEmail) {
   }
 }
 
-export async function deleteUser(userId) {
+export async function deleteUser(token, userId) {
   try {
-    const res = await api.delete(`/user/account/${userId}`);
+    const res = await api.delete(`/user/account/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res;
   } catch (error) {
     console.log(error);
@@ -30,13 +42,20 @@ export async function deleteUser(userId) {
   }
 }
 
-export async function postUser(username, name, email, preferences_categories) {
+export async function postUser(
+  username,
+  name,
+  email,
+  preferences_categories,
+  profile_type
+) {
   try {
     const res = await api.post(`/user`, {
       username,
       name,
       email,
-      preferences_categories,
+      preferences_categories: [preferences_categories],
+      profile_type,
     });
     return res;
   } catch (error) {

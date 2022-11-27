@@ -1,10 +1,10 @@
 import React from "react";
 
-import DefaultTemplate from "../../templates/DefaultTemplate";
+import UsersTemplate from "../../templates/UsersTemplate";
 import nookies from "nookies";
 
-export default function Users(props) {
-  return <DefaultTemplate {...props} />;
+export default function Users() {
+  return <UsersTemplate />;
 }
 
 export async function getServerSideProps(context) {

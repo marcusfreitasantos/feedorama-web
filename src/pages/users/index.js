@@ -1,7 +1,7 @@
 import React from "react";
 
 import DefaultTemplate from "../../templates/DefaultTemplate";
-import users from "../../mocks/users";
+import { getUsers, getUsersFetchApi } from "../../services/requests/users";
 import nookies from "nookies";
 
 export default function Users(props) {
@@ -19,14 +19,14 @@ export async function getServerSideProps(context) {
       },
     };
   }
+  const users = await getUsers(cookies.userToken);
   const pageTitle = "Usuários";
-  const usersList = users;
 
   return {
     props: {
       pageTitle,
-      usersList,
       cookies,
+      users,
     },
   };
 }
