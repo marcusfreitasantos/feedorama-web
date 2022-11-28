@@ -28,7 +28,7 @@ export default function LoginForm() {
       localStorage.setItem("userInfo", JSON.stringify(userObj));
       router.push("/stories");
       setCookie(null, "userToken", token, {
-        maxAge: 30 * 24 * 60 * 60,
+        maxAge: 3600,
         path: "/",
       });
     } else {

@@ -3,7 +3,6 @@ import { ThemeProvider } from "styled-components";
 import theme from "../styles/theme";
 import Head from "next/head";
 import { InfoProvider } from "../contexts/GlobalContext";
-import Script from "next/script";
 
 export default function App({ Component, pageProps }) {
   return (

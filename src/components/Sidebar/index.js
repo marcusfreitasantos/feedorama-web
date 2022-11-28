@@ -40,29 +40,30 @@ export default function Sidebar() {
         </S.UserInfoWrapper>
 
         <S.NavMenu>
-          <S.MenuItem>
-            <BookOpen width={24} color="#fff" />
-            <Link href="/stories">
+          <Link href="/stories">
+            <S.MenuItem>
+              <BookOpen width={24} color="#fff" />
               <a>Stories</a>
-            </Link>
-          </S.MenuItem>
+            </S.MenuItem>
+          </Link>
 
-          <S.MenuItem>
-            <Box width={24} color="#fff" />
-            <Link href="/categories">
+          <Link href="/categories">
+            <S.MenuItem>
+              <Box width={24} color="#fff" />
               <a>Categorias</a>
-            </Link>
-          </S.MenuItem>
+            </S.MenuItem>
+          </Link>
 
-          <S.MenuItem>
-            <Users width={24} color="#fff" />
-            <Link href="/users">
+          <Link href="/users">
+            <S.MenuItem>
+              <Users width={24} color="#fff" />
               <a>Usuários</a>
-            </Link>
-          </S.MenuItem>
-          <S.MenuItem>
+            </S.MenuItem>
+          </Link>
+
+          <S.MenuItem onClick={() => logout()}>
             <LogOut width={24} color="#fff" />
-            <a onClick={logout}>Sair</a>
+            <a>Sair</a>
           </S.MenuItem>
         </S.NavMenu>
       </S.Sidebar__container>
