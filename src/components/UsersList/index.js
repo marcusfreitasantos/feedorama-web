@@ -62,7 +62,7 @@ export default function CategoryList(props) {
             <S.Content__item className="row__header">Ações</S.Content__item>
           </S.Content__row>
           {listUsers &&
-            listUsers.map((content, index) => {
+            listUsers.map((content) => {
               return (
                 <S.Content__row key={content.userId}>
                   <S.Content__item>{content.username}</S.Content__item>

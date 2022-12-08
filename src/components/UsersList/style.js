@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 
-
 export const MainContent__filtersWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -37,7 +36,7 @@ export const Content__row = styled.div`
     width: 100%;
     border-bottom: 1px solid ${theme.colors.gray};
 
-    .row__header{
+    .row__header {
       font-weight: bold;
     }
   `}

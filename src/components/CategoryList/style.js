@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 
-
 export const MainContent__filtersWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -45,7 +44,7 @@ export const Content__row = styled.div`
 
 export const Content__item = styled.span`
   ${({ theme }) => css`
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: ${theme.colors.gray};
     padding: 10px;
     width: 100%;

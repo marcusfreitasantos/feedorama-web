@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 
-
 export const MainContent__filtersWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -45,7 +44,7 @@ export const Content__row = styled.div`
 
 export const Content__item = styled.span`
   ${({ theme }) => css`
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: ${theme.colors.gray};
     padding: 10px;
     width: 100%;
@@ -58,7 +57,7 @@ export const Content__buttonWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-  
+
 export const Content__button = styled.button`
   background: none;
   border: none;
@@ -72,9 +71,9 @@ export const Content__button = styled.button`
 `;
 
 export const NotFound = styled.p`
-${({theme}) => css `
-  color: ${theme.colors.gray};
-  font-size: 1.2rem;
-  text-align: center;
-`}
-`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray};
+    font-size: 1.2rem;
+    text-align: center;
+  `}
+`;

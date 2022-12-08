@@ -60,16 +60,17 @@ export default function CategoryList(props) {
 
         <S.MainContent__ContentWrapper>
           <S.Content__row>
-            <S.Content__item className="row__header">ID</S.Content__item>
             <S.Content__item className="row__header">Nome</S.Content__item>
+            <S.Content__item className="row__header">Descrição</S.Content__item>
             <S.Content__item className="row__header">Ações</S.Content__item>
           </S.Content__row>
           {categoriesList &&
             categoriesList.map((item, index) => {
               return (
                 <S.Content__row key={item.category}>
-                  <S.Content__item>{index + 1}</S.Content__item>
                   <S.Content__item>{item.category}</S.Content__item>
+                  <S.Content__item>{item.description}</S.Content__item>
+
                   <S.Content__item>
                     <S.Content__buttonWrapper>
                       <S.Content__button
