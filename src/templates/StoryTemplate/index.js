@@ -23,6 +23,9 @@ export default function StoryTemplate(props) {
   const [storyTitle, setStoryTitle] = useState(props.story?.title || "");
   const [storyCategory, setStoryCategory] = useState(props.story?.category);
   const [storyContent, setStoryContent] = useState(props.story?.content || "");
+  const [storyDate, setStoryDate] = useState(
+    props.story?.date_for_search || ""
+  );
   const [active, isActive] = useState(false);
   const [sucessModal, setSucessModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
@@ -32,6 +35,7 @@ export default function StoryTemplate(props) {
       storyTitle,
       storyCategory,
       storyContent,
+      storyDate,
       token
     );
 
@@ -69,7 +73,8 @@ export default function StoryTemplate(props) {
     if (
       storyTitle?.length >= 3 &&
       storyCategory?.length > 0 &&
-      storyContent?.length >= 3
+      storyContent?.length >= 3 &&
+      storyDate !== ""
     ) {
       isActive(true);
     } else {
@@ -92,7 +97,7 @@ export default function StoryTemplate(props) {
 
   useEffect(() => {
     validateForm();
-  }, [storyTitle, storyCategory, storyContent]);
+  }, [storyTitle, storyCategory, storyContent, storyDate]);
 
   return (
     <>
@@ -121,6 +126,12 @@ export default function StoryTemplate(props) {
               value={storyContent}
               onChange={(e) => setStoryContent(e.currentTarget.value)}
             />
+
+            <input
+              type="date"
+              value={storyDate}
+              onChange={(e) => setStoryDate(e.target.value)}
+            ></input>
 
             <Button buttonActive={active} onClick={handleClick}>
               Publicar

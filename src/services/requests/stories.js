@@ -16,7 +16,7 @@ export async function getStories(token) {
 
 export async function getStoryById(storyId, token) {
   try {
-    const res = await api.get(`/story/${storyId}`, {
+    const res = await api.get(`/story?storyId=${storyId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -42,7 +42,13 @@ export async function deleteStories(storyId, token) {
   }
 }
 
-export async function postStories(title, category, content, token) {
+export async function postStories(
+  title,
+  category,
+  content,
+  date_for_search,
+  token
+) {
   try {
     const res = await api.post(
       `/story`,
@@ -50,6 +56,7 @@ export async function postStories(title, category, content, token) {
         title,
         category,
         content,
+        date_for_search,
       },
       {
         headers: {
@@ -64,13 +71,20 @@ export async function postStories(title, category, content, token) {
   }
 }
 
-export async function updateStories(storyId, title, content, token) {
+export async function updateStories(
+  storyId,
+  title,
+  content,
+  date_for_search,
+  token
+) {
   try {
     const res = await api.put(
       `/story/${storyId}`,
       {
         title,
         content,
+        date_for_search,
       },
       {
         headers: {

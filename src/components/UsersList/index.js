@@ -69,7 +69,8 @@ export default function CategoryList(props) {
                   <S.Content__item>{content.name}</S.Content__item>
                   <S.Content__item>{content.email}</S.Content__item>
                   <S.Content__item>
-                    {content.preferences_categories[0]}
+                    {content.preferences_categories &&
+                      content.preferences_categories[0].name}
                   </S.Content__item>
                   <S.Content__item>
                     <S.Content__buttonWrapper>
