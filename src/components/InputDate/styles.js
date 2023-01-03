@@ -10,7 +10,7 @@ export const InputArea = styled.div`
     border-radius: 5px;
     margin: 10px 0;
     height: 30px;
-    width: 100%;
+    width: 50%;
   `}
 `;
 

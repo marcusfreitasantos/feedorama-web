@@ -5,6 +5,7 @@ import {
   MainContent__section,
 } from "../../styles/global";
 import { postStories, updateStories } from "../../services/requests/stories";
+import * as S from "./styles";
 
 import TextField from "../../components/TextField";
 import Sidebar from "../../components/Sidebar";
@@ -16,6 +17,7 @@ import theme from "../../styles/theme";
 import Modal from "../../components/Modal";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
+import InputDate from "../../components/InputDate";
 
 export default function StoryTemplate(props) {
   const token = parseCookies().userToken;
@@ -106,14 +108,22 @@ export default function StoryTemplate(props) {
         <MainContent__container>
           <MainContentHeader data={storyTitle || "Novo Story"} />
           <form>
-            <TextField
-              value={storyTitle}
-              placeholder="Digite o Título do Story"
-              onBlur={validateForm}
-              onChange={(e) => setStoryTitle(e.currentTarget.value)}
-            >
-              <Type width={24} color={theme.colors.gray} />
-            </TextField>
+            <S.InputGroup>
+              <TextField
+                value={storyTitle}
+                placeholder="Digite o Título do Story"
+                onBlur={validateForm}
+                onChange={(e) => setStoryTitle(e.currentTarget.value)}
+              >
+                <Type width={24} color={theme.colors.gray} />
+              </TextField>
+
+              <InputDate
+                value={storyDate}
+                onChange={(e) => setStoryDate(e.target.value)}
+                onBlur={validateForm}
+              />
+            </S.InputGroup>
 
             <CategorySelect
               defaultValue={storyCategory}
@@ -126,12 +136,6 @@ export default function StoryTemplate(props) {
               value={storyContent}
               onChange={(e) => setStoryContent(e.currentTarget.value)}
             />
-
-            <input
-              type="date"
-              value={storyDate}
-              onChange={(e) => setStoryDate(e.target.value)}
-            ></input>
 
             <Button buttonActive={active} onClick={handleClick}>
               Publicar
