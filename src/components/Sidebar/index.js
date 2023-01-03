@@ -32,10 +32,10 @@ export default function Sidebar() {
       </S.LogoWrapper>
       <S.Sidebar__container>
         <S.UserInfoWrapper>
-          <S.UserInfo__avatar src={userInfo?.picture} />
-          <S.UserInfo__name>
-            {userInfo?.given_name} {userInfo?.family_name}
-          </S.UserInfo__name>
+          <S.UserInfo__avatar
+            src={userInfo?.avatar ? userInfo?.avatar : "/img/avatar.svg"}
+          />
+          <S.UserInfo__name>{userInfo?.name}</S.UserInfo__name>
           <S.UserInfo__email>{userInfo?.email}</S.UserInfo__email>
         </S.UserInfoWrapper>
 

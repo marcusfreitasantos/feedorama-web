@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./styles";
+import { Eye, EyeOff } from "react-feather";
+import theme from "../../styles/theme";
 
 export default function TextField({
   placeholder,
@@ -9,6 +11,16 @@ export default function TextField({
   type,
   onBlur,
 }) {
+  const [showUserPass, setShowUserPass] = useState(false);
+
+  function showPassword() {
+    setShowUserPass(true);
+  }
+
+  function hidePassword() {
+    setShowUserPass(false);
+  }
+
   return (
     <S.InputArea>
       <S.Icon>{children}</S.Icon>
@@ -16,9 +28,23 @@ export default function TextField({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        type={type}
+        type={showUserPass ? "text" : type}
         onBlur={onBlur}
       />
+
+      {type === "password" && (
+        <>
+          {showUserPass ? (
+            <S.Icon onClick={hidePassword}>
+              <EyeOff width={24} color={theme.colors.pink} />
+            </S.Icon>
+          ) : (
+            <S.Icon onClick={showPassword}>
+              <Eye width={24} color={theme.colors.pink} />
+            </S.Icon>
+          )}
+        </>
+      )}
     </S.InputArea>
   );
 }

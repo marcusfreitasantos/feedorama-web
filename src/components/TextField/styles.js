@@ -32,4 +32,6 @@ export const TextInput = styled.input`
   `}
 `;
 
-export const Icon = styled.div``;
+export const Icon = styled.div`
+  cursor: pointer;
+`;

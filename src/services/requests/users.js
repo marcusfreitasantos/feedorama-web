@@ -64,10 +64,11 @@ export async function postUser(
   }
 }
 
-export async function loginUser(email) {
+export async function loginUser(email, password) {
   try {
     const res = await api.post(`/login`, {
       email,
+      password,
     });
     return res;
   } catch (error) {
