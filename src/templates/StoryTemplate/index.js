@@ -109,14 +109,16 @@ export default function StoryTemplate(props) {
           <MainContentHeader data={storyTitle || "Novo Story"} />
           <form>
             <S.InputGroup>
-              <TextField
-                value={storyTitle}
-                placeholder="Digite o Título do Story"
-                onBlur={validateForm}
-                onChange={(e) => setStoryTitle(e.currentTarget.value)}
-              >
-                <Type width={24} color={theme.colors.gray} />
-              </TextField>
+              <S.TextFieldWrapper>
+                <TextField
+                  value={storyTitle}
+                  placeholder="Digite o Título do Story"
+                  onBlur={validateForm}
+                  onChange={(e) => setStoryTitle(e.currentTarget.value)}
+                >
+                  <Type width={24} color={theme.colors.gray} />
+                </TextField>
+              </S.TextFieldWrapper>
 
               <InputDate
                 value={storyDate}

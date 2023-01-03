@@ -5,3 +5,7 @@ export const InputGroup = styled.div`
   flex-direction: space-between;
   gap: 15px;
 `;
+
+export const TextFieldWrapper = styled.div`
+  width: 100%;
+`;
