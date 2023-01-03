@@ -60,11 +60,7 @@ export default function UsersTemplate() {
   }
 
   function validateForm() {
-    if (
-      name?.length >= 3 &&
-      userEmail?.length > 0 &&
-      userCategory?.length >= 3
-    ) {
+    if (name?.length >= 3 && userEmail?.length > 0 && userCategory !== "") {
       isActive(true);
     } else {
       isActive(false);
@@ -78,6 +74,13 @@ export default function UsersTemplate() {
 
   function backToUsers() {
     router.push("/users");
+  }
+
+  function handleChangeCategory(e) {
+    setUserCategory({
+      name: e.options[e.selectedIndex].text,
+      slug: e.options[e.selectedIndex].value,
+    });
   }
 
   useEffect(() => {
@@ -110,8 +113,8 @@ export default function UsersTemplate() {
             </TextField>
 
             <CategorySelect
-              defaultValue={userCategory}
-              onChange={(e) => setUserCategory(e.currentTarget.value)}
+              defaultValue={userCategory.slug}
+              onChange={(e) => handleChangeCategory(e.currentTarget)}
             />
 
             <Select

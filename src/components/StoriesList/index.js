@@ -78,6 +78,11 @@ export default function StoriesList(props) {
     }
   }, [currentCategory]);
 
+  function handleChangeCategory(e) {
+    setCurrentCategory(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+  }
+
   return (
     <MainContent__section>
       <MainContent__container>
@@ -88,7 +93,7 @@ export default function StoriesList(props) {
             <CategorySelect
               all="Todas"
               defaultValue={currentCategory}
-              onChange={(e) => setCurrentCategory(e.currentTarget.value)}
+              onChange={(e) => handleChangeCategory(e)}
             />
           </S.Label>
 

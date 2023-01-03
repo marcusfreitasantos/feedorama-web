@@ -38,10 +38,7 @@ export default function CategorySelect({ onChange, defaultValue, all }) {
         {categoriesList &&
           categoriesList.map((item, index) => {
             return (
-              <option
-                key={`option_${item.category + index}`}
-                value={item.category}
-              >
+              <option key={`option_${item.category + index}`} value={item.slug}>
                 {item.category}
               </option>
             );
