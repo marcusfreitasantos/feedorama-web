@@ -111,6 +111,7 @@ export default function StoryTemplate(props) {
             <S.InputGroup>
               <S.TextFieldWrapper>
                 <TextField
+                  className="custom_input"
                   value={storyTitle}
                   placeholder="Digite o Título do Story"
                   onBlur={validateForm}
@@ -120,11 +121,14 @@ export default function StoryTemplate(props) {
                 </TextField>
               </S.TextFieldWrapper>
 
-              <InputDate
-                value={storyDate}
-                onChange={(e) => setStoryDate(e.target.value)}
-                onBlur={validateForm}
-              />
+              {!props.story?.id && (
+                <InputDate
+                  className="custom_input"
+                  value={storyDate}
+                  onChange={(e) => setStoryDate(e.target.value)}
+                  onBlur={validateForm}
+                />
+              )}
             </S.InputGroup>
 
             <CategorySelect

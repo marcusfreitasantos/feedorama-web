@@ -10,6 +10,7 @@ export default function TextField({
   onChange,
   type,
   onBlur,
+  className,
 }) {
   const [showUserPass, setShowUserPass] = useState(false);
 
@@ -22,7 +23,7 @@ export default function TextField({
   }
 
   return (
-    <S.InputArea>
+    <S.InputArea className={className}>
       <S.Icon>{children}</S.Icon>
       <S.TextInput
         placeholder={placeholder}

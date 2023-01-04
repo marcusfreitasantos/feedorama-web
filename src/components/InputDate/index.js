@@ -3,7 +3,7 @@ import * as S from "./styles";
 import { Calendar } from "react-feather";
 import theme from "../../styles/theme";
 
-export default function TextField({ value, onChange, onBlur }) {
+export default function TextField({ value, onChange, onBlur, className }) {
   const currentDate = new Date();
 
   const minDate = `${currentDate.getFullYear()}-0${
@@ -11,7 +11,7 @@ export default function TextField({ value, onChange, onBlur }) {
   }-0${currentDate.getDate()}`;
 
   return (
-    <S.InputArea>
+    <S.InputArea className={className}>
       <S.Icon>
         <Calendar width={24} color={theme.colors.gray} />
       </S.Icon>
