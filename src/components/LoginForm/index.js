@@ -59,7 +59,7 @@ export default function LoginForm() {
         ) : (
           <S.Wrapper>
             <S.Form>
-              <S.Form__title>Faça Login com sua conta Google</S.Form__title>
+              <S.Form__title>Faça Login</S.Form__title>
 
               <TextField
                 placeholder="Seu email"
