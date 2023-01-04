@@ -57,6 +57,7 @@ export default function StoryTemplate(props) {
       props.story.id,
       storyTitle,
       storyContent,
+      storyDate,
       token
     );
 
