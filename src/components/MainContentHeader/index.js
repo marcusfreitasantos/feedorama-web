@@ -12,7 +12,7 @@ export default function MainContentHeader({ data, onClick, onChange }) {
         {onChange && (
           <S.UpoadFile htmlfor="upload">
             <Upload width={24} /> Importar CSV
-            <input id="upload" type="file" onChange={onChange} />
+            <input accept=".csv" id="upload" type="file" onChange={onChange} />
           </S.UpoadFile>
         )}
 
