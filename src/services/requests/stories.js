@@ -98,3 +98,44 @@ export async function updateStories(
     return false;
   }
 }
+
+export async function importStories(token, multipart) {
+  try {
+    const res = await api.post(
+      `/upload/story`,
+
+      multipart,
+
+      {
+        headers: {
+          Accept: "*/*",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export async function importStories2(token, formData) {
+  await fetch(process.env.NEXT_PUBLIC_API_URL + "/upload/story", {
+    method: "POST",
+    body: {
+      multipart: formData,
+    },
+    headers: {
+      Accept: "*/*",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("data: ", data);
+    })
+    .catch((error) => {
+      console.error("error: ", error);
+    });
+}

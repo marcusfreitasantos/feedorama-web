@@ -11,17 +11,24 @@ import { useRouter } from "next/router";
 import MainContentHeader from "../MainContentHeader";
 import CategorySelect from "../CategorySelect";
 import TextField from "../TextField";
-import { getStories, deleteStories } from "../../services/requests/stories";
+import {
+  getStories,
+  deleteStories,
+  importStories,
+  importStories2,
+} from "../../services/requests/stories";
 import Modal from "../../components/Modal";
+import FormData from "form-data";
 
 export default function StoriesList(props) {
   const Router = useRouter();
-  const [searchTerm, setSearchTerm] = useState("");
   const [currentCategory, setCurrentCategory] = useState();
   const [sucessModal, setSucessModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
   const [storiesList, setStoriesList] = useState(props.content);
   const token = props.cookies.userToken;
+  const formData = new FormData();
+  //const bound = formData.getBoundary();
 
   function AddNew() {
     Router.push("/stories/new");
@@ -38,6 +45,19 @@ export default function StoriesList(props) {
       {
         setErrorModal(true);
       }
+    }
+  }
+
+  async function uploadStories(files) {
+    try {
+      formData.append("multipart", files);
+      const response = await importStories(token, formData);
+      console.log("formData", formData);
+      console.log(response);
+
+      setSucessModal(true);
+    } catch (err) {
+      setErrorModal(true);
     }
   }
 
@@ -80,13 +100,20 @@ export default function StoriesList(props) {
 
   function handleChangeCategory(e) {
     setCurrentCategory(e.currentTarget.value);
-    console.log(e.currentTarget.value);
   }
+
+  const handleFileSelect = (e) => {
+    uploadStories(e.target.files[0]);
+  };
 
   return (
     <MainContent__section>
       <MainContent__container>
-        <MainContentHeader data={props.pageTitle} onClick={AddNew} />
+        <MainContentHeader
+          data={props.pageTitle}
+          onClick={AddNew}
+          onChange={(e) => handleFileSelect(e)}
+        />
         <S.MainContent__filtersWrapper>
           <S.Label>
             Categorias
@@ -143,7 +170,7 @@ export default function StoriesList(props) {
 
         {sucessModal && (
           <Modal
-            title="Story removido!"
+            title="Operação bem sucedida!"
             onClickConfirm={() => getStoriesList()}
           >
             <CheckCircle width={40} height={40} color={theme.colors.yellow} />

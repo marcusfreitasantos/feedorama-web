@@ -1,7 +1,7 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TextArea = styled.textarea`
-${({theme}) => css`
+  ${({ theme }) => css`
     background-color: ${theme.colors.grayLight};
     padding: 20px;
     display: flex;
@@ -13,5 +13,6 @@ ${({theme}) => css`
     font-size: 1rem;
     box-sizing: border-box;
     margin: 10px 0;
-`}
-`
+    resize: vertical;
+  `}
+`;
