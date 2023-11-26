@@ -1,10 +1,10 @@
-import React from "react";
-
 import StoryTemplate from "../../templates/StoryTemplate";
+import { getCategories } from "../../services/requests/categories";
+
 import nookies from "nookies";
 
-export default function Stories() {
-  return <StoryTemplate />;
+export default function Stories(props) {
+  return <StoryTemplate {...props} />;
 }
 
 export async function getServerSideProps(context) {
@@ -19,9 +19,12 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const categories = await getCategories(cookies.userToken);
+
   return {
     props: {
       cookies,
+      categories,
     },
   };
 }

@@ -22,13 +22,17 @@ import InputDate from "../../components/InputDate";
 export default function StoryTemplate(props) {
   const token = parseCookies().userToken;
   const router = useRouter();
-  const [storyTitle, setStoryTitle] = useState(props.story[0]?.title || "");
-  const [storyCategory, setStoryCategory] = useState(props.story[0]?.category);
+  const [storyTitle, setStoryTitle] = useState(
+    props.story && props.story[0].title
+  );
+  const [storyCategory, setStoryCategory] = useState(
+    props.story && props.story[0].category
+  );
   const [storyContent, setStoryContent] = useState(
-    props.story[0]?.content || ""
+    props.story && props.story[0]?.content
   );
   const [storyDate, setStoryDate] = useState(
-    props.story[0]?.date_for_search || ""
+    props.story && props.story[0]?.date_for_search
   );
   const [active, isActive] = useState(false);
   const [sucessModal, setSucessModal] = useState(false);
@@ -137,6 +141,7 @@ export default function StoryTemplate(props) {
             <CategorySelect
               defaultValue={storyCategory}
               onChange={(e) => setStoryCategory(e.currentTarget.value)}
+              categoriesList={props.categories}
             />
 
             <TextArea

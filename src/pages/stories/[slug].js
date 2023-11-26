@@ -1,6 +1,5 @@
-import React from "react";
-
 import { getStoryById } from "../../services/requests/stories";
+import { getCategories } from "../../services/requests/categories";
 import StoryTemplate from "../../templates/StoryTemplate";
 import nookies from "nookies";
 
@@ -25,12 +24,14 @@ export async function getServerSideProps(context) {
     context.params.slug,
     cookies.userToken.toString()
   );
+  const categories = await getCategories(cookies.userToken);
 
   return {
     props: {
       story,
       pageTitle,
       cookies,
+      categories,
     },
   };
 }

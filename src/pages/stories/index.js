@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
   }
 
   const pageTitle = "Stories";
-  const content = await getStories(cookies.userToken.toString());
+  const content = await getStories(cookies.userToken);
   const categories = await getCategories(cookies.userToken);
 
   return {
