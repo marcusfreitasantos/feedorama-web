@@ -60,6 +60,7 @@ export default function LoginForm() {
           <S.Wrapper>
             <S.Form>
               <S.Form__title>Faça Login</S.Form__title>
+              <span>Email: user@user.com | senha: user</span>
 
               <TextField
                 placeholder="Seu email"
