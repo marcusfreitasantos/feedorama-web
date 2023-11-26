@@ -15,10 +15,9 @@ import {
   getStories,
   deleteStories,
   importStories,
-  importStories2,
 } from "../../services/requests/stories";
 import Modal from "../../components/Modal";
-import FormData from "form-data";
+//import * as FormData from "form-data";
 
 export default function StoriesList(props) {
   const Router = useRouter();
@@ -27,8 +26,6 @@ export default function StoriesList(props) {
   const [errorModal, setErrorModal] = useState(false);
   const [storiesList, setStoriesList] = useState(props.content);
   const token = props.cookies.userToken;
-  const formData = new FormData();
-  //const bound = formData.getBoundary();
 
   function AddNew() {
     Router.push("/stories/new");
@@ -50,10 +47,14 @@ export default function StoriesList(props) {
 
   async function uploadStories(files) {
     try {
+      const formData = new FormData();
+
       formData.append("multipart", files);
+      formData.append("upload_preset", "docs_upload_example_us_preset");
+
       const response = await importStories(token, formData);
-      console.log("formData", formData);
-      console.log(response);
+      console.log(response.data.body);
+      console.log(formData);
 
       setSucessModal(true);
     } catch (err) {
@@ -121,6 +122,7 @@ export default function StoriesList(props) {
               all="Todas"
               defaultValue={currentCategory}
               onChange={(e) => handleChangeCategory(e)}
+              categoriesList={props.categories}
             />
           </S.Label>
 

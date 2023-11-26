@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   }
 
   const pageTitle = "Categorias";
-  const categoriesList = await getCategories(cookies.userToken.toString());
+  const categoriesList = await getCategories(cookies.userToken);
 
   return {
     props: {

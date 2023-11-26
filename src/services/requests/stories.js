@@ -104,11 +104,10 @@ export async function importStories(token, multipart) {
     const res = await api.post(
       `/upload/story`,
 
-      multipart,
+      { data: multipart },
 
       {
         headers: {
-          Accept: "*/*",
           Authorization: `Bearer ${token}`,
         },
       }
@@ -118,4 +117,19 @@ export async function importStories(token, multipart) {
     console.log(error);
     return false;
   }
+}
+
+export async function importStories2(formData) {
+  const res = fetch("https://api.cloudinary.com/v1_1/demo/image/upload", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      return response.text();
+    })
+    .then((data) => {
+      console.log(data);
+    });
+
+  return res;
 }

@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
-
-import { getCategories } from "../../services/requests/categories";
 import * as S from "./style";
 import { Box } from "react-feather";
 import theme from "../../styles/theme";
-import { parseCookies } from "nookies";
 
-export default function CategorySelect({ onChange, defaultValue, all }) {
-  const token = parseCookies().userToken;
-
-  const [categoriesList, setCategoriesList] = useState();
-
-  async function getCategoriesList() {
-    const response = await getCategories(token);
-    setCategoriesList(response);
-  }
-
-  useEffect(() => {
-    getCategoriesList();
-  }, []);
-
+export default function CategorySelect({
+  onChange,
+  defaultValue,
+  all,
+  categoriesList,
+}) {
   return (
     <S.InputArea>
       <S.Icon>
