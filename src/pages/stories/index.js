@@ -1,5 +1,3 @@
-import React from "react";
-
 import { getStories } from "../../services/requests/stories";
 import { getCategories } from "../../services/requests/categories";
 import DefaultTemplate from "../../templates/DefaultTemplate";
